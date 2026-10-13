@@ -1,3 +1,3 @@
-public class HungryRatException extends IllegalArgumentException {
+3public class HungryRatException extends IllegalArgumentException {
     
 }
