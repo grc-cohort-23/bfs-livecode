@@ -51,7 +51,29 @@ public class Search {
      * @throws HungryRatException if there is no reachable cheese
      */
     public static int[] nearestCheese(char[][] maze) throws EscapedRatException, CrowdedMazeException, HungryRatException {
-        return null;
+        Location start = ratLocation(maze);
+
+        Set<Location> visited = new HashSet<>();
+        Queue<Location> queue = new ArrayDeque<>();
+
+        queue.add(start);
+
+        while(!queue.isEmpty()) {
+            Location current = queue.remove();
+            if(visited.contains(current)) continue;
+            visited.add(current);
+
+            if(maze[current.row()][current.column()] == 'c') {
+                return new int[]{current.row(), current.column()};
+            }
+            
+            List<Location> neighbors = possibleMoves(maze, current);
+            for(Location neighbor : neighbors) {
+                queue.add(neighbor);
+            }
+        }
+
+        throw new HungryRatException();
     }
 
     public static List<Location> possibleMoves(char[][] maze, Location current) {
@@ -73,7 +95,7 @@ public class Search {
                 validMoves.add(possibleMove);
                }
         }
-        
+
         return validMoves;
     }
 
