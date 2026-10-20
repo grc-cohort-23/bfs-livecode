@@ -1,3 +1,3 @@
-public class EscapedRatException extends IllegalArgumentException{
+public class EscapedRatException extends IllegalArgumentException {
     
 }
